@@ -1,51 +1,64 @@
-## Getting Started
+## Hospital Management System
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+### Database Schema
 
-## Folder Structure
+The Hospital Management System uses a MySQL database to store information about patients, doctors, and appointments. Here's the database schema:
 
-The workspace contains two folders by default, where:
+#### Tables:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+1. **patients**: Stores information about patients, including their ID, name, age, and gender.
+   ```sql
+   CREATE TABLE patients (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(255) NOT NULL,
+       age INT NOT NULL,
+       gender VARCHAR(12) NOT NULL
+   );
+   ```
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+2. **doctors**: Stores information about doctors, including their ID, name, and specialization.
+   ```sql
+   CREATE TABLE doctors (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(255) NOT NULL,
+       specialization VARCHAR(255) NOT NULL
+   );
+   ```
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+3. **appointments**: Stores information about appointments, including their ID, patient ID, doctor ID, and appointment date.
+   ```sql
+   CREATE TABLE appointments (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       patient_id INT NOT NULL,
+       doctor_id INT NOT NULL,
+       appointment_date DATE NOT NULL,
+       FOREIGN KEY (patient_id) REFERENCES patients(id),
+       FOREIGN KEY (doctor_id) REFERENCES doctors(id)
+   );
+   ```
 
-## Dependency Management
+#### Initial Data:
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- Inserted initial data into the **doctors** table:
+  ```sql
+  INSERT INTO doctors (name, specialization) VALUES
+  ("Swathi", "Neuro Surgeon"),
+  ("Vijay", "General Surgeon");
+  ```
 
-Database creation and queries !
-create database hospital;
+### Java Classes
 
-create table patients(
--> id INT AUTO_INCREMENT PRIMARY KEY,
--> name VARCHAR(255) NOT NULL,
--> age INT NOT NULL,
--> gender VARCHAR(12) NOT NULL );
+The Hospital Management System is implemented in Java and utilizes JDBC for database connectivity. Here are the Java classes used in the system:
 
-CREATE TABLE doctors(
--> id INT AUTO_INCREMENT PRIMARY KEY,
--> name VARCHAR(255)NOT NULL,
--> specialization VARCHAR(255) NOT NULL);
+1. **Patient**: Represents operations related to patients, including adding patients, viewing patients, and checking patient information.
+   
+2. **Doctor**: Represents operations related to doctors, including viewing doctors and checking doctor information.
 
-create table appointments(
--> id INT AUTO_INCREMENT PRIMARY KEY,
--> patient_id INT NOT NULL,
--> doctor_id INT NOT NULL,
--> appointment_date DATE NOT NULL,
--> FOREIGN KEY (patient_id) REFERENCES patients(id),
--> FOREIGN KEY (doctor_id) REFERENCES doctors(id));
+3. **Appointment**: Represents operations related to appointments, including booking appointments and checking doctor availability on a specific date.
 
-INSERT INTO doctors(name , specialization) VALUES ("Swathi" ,"Neuro Surgeon"),("Vijay" , "General Surgeon");
+4. **App**: Main class that provides a command-line interface for interacting with the Hospital Management System. It allows users to add/view patients, view doctors, book appointments, and view appointments.
 
-now creating a patient class
-now we use constructors to create patients
-add patient()
-view patient()
-check patient()
+### Integration with Java Swing
 
-in add patients = >
-we first use scanner to take input parameters from user and then use it to send prepared statement query with placeholder ?
+The system has been enhanced with a Java Swing graphical user interface (GUI) to provide a more user-friendly experience. The Swing GUI includes components for adding patients, viewing patients, viewing doctors, booking appointments, and viewing appointments. Users can interact with the GUI to perform various operations seamlessly.
+

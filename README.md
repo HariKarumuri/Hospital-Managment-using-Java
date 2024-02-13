@@ -1,4 +1,4 @@
-## Hospital Management System
+## Hospital Management System Using MYSQL and Java with VS code 
 
 ### Database Schema
 

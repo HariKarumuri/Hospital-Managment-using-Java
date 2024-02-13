@@ -7,6 +7,7 @@ The Hospital Management System uses a MySQL database to store information about 
 #### Tables:
 
 1. **patients**: Stores information about patients, including their ID, name, age, and gender.
+
    ```sql
    CREATE TABLE patients (
        id INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,6 +18,7 @@ The Hospital Management System uses a MySQL database to store information about 
    ```
 
 2. **doctors**: Stores information about doctors, including their ID, name, and specialization.
+
    ```sql
    CREATE TABLE doctors (
        id INT AUTO_INCREMENT PRIMARY KEY,
@@ -51,14 +53,15 @@ The Hospital Management System uses a MySQL database to store information about 
 The Hospital Management System is implemented in Java and utilizes JDBC for database connectivity. Here are the Java classes used in the system:
 
 1. **Patient**: Represents operations related to patients, including adding patients, viewing patients, and checking patient information.
-   
 2. **Doctor**: Represents operations related to doctors, including viewing doctors and checking doctor information.
 
 3. **Appointment**: Represents operations related to appointments, including booking appointments and checking doctor availability on a specific date.
 
 4. **App**: Main class that provides a command-line interface for interacting with the Hospital Management System. It allows users to add/view patients, view doctors, book appointments, and view appointments.
 
-### Integration with Java Swing
+# outputs
 
-The system has been enhanced with a Java Swing graphical user interface (GUI) to provide a more user-friendly experience. The Swing GUI includes components for adding patients, viewing patients, viewing doctors, booking appointments, and viewing appointments. Users can interact with the GUI to perform various operations seamlessly.
-
+![output1](./src/assets/Screenshot%20(136).png)
+![output1](./src/assets/Screenshot%20(137).png)
+![output1](./src/assets/Screenshot%20(138).png)
+![output1](./src/assets/Screenshot%20(139).png)
